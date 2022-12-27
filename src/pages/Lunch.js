@@ -29,9 +29,9 @@ const Lunch = () => {
     setClicks2(true);
   };
   const loading = ()=> {
-    const infos = info.filter(infoss=> infoss !== " " && infoss !== '(' && infoss !== 'b' &&infoss !== 'r' && infoss !== '/' && infoss !== '<' & infoss !== '>' && infoss !== '.' && infoss !== '0' && infoss !== '1' && infoss !== '2' && infoss !== '3' && infoss !== '4' && infoss !== '5' && infoss !== '6' && infoss !== '7' && infoss !== '8' && infoss !== '9');
+    const infos = info.filter(infoss=> infoss !== " " && infoss !== 'b' &&infoss !== 'r' && infoss !== '/' & infoss !== '>');
     const infos_result = infos.join("");
-    const final_result = infos_result.split(')');
+    const final_result = infos_result.split('<');
     setDinner(final_result.filter(info=> info !== ''));
     setClicks(false);
   };
@@ -44,21 +44,34 @@ const Lunch = () => {
       <div className='lunchMenu'>
         {lunchNull !== null ? (
           <div className='dinnerWrapper'>
-            {dinner.map((item, index)=> (
-              <ul className='dinner' key={index}>
-                <li>{item}</li>
-              </ul>
-            ))}
+            <div className='circleWrapper'><div className='circle'></div></div>
+            <div className='dinners'>
+              {dinner.map((item, index)=> (
+                <ul className='dinner' key={index}>
+                  <li>{item}</li>
+                </ul>
+              ))}
+            </div>
           </div>
         ) : (
-          <span>오늘은 급식이 업성요</span>
+          <div className='dinnerWrapper'>
+            <div className='circleWrapper'><div className='circle'></div></div>
+            <div className='no-lunch'><span>오늘은 급식이 없습니다.</span></div>
+          </div>
         )}
       </div>
-      <div className='lunchBtn'>
-        <button onClick={click} className={clicks2 ? 'no' : 'yes'}>급식 불러오기</button>
-        <button onClick={loading} className={clicks ? 'yes' : 'no'}>급식 확인하기</button>
-        <button className='yes' onClick={goMain}>홈으로</button>
-      </div>
+      {lunchNull !== null ? (
+        <div className='lunchBtn'>
+          <button onClick={click} className={clicks2 ? 'no' : 'yes'}>급식 불러오기</button>
+          <button onClick={loading} className={clicks ? 'yes' : 'no'}>급식 확인하기</button>
+          <button className='yes' onClick={goMain}>홈으로</button>
+        </div>
+      ) : (
+        <div className='lunchBtn'>
+          <button onClick={click} className={clicks2 ? 'no' : 'yes'}>급식 불러오기</button>
+          <button className='yes' onClick={goMain}>홈으로</button>
+        </div>
+      )}
     </div>
   );
 };
