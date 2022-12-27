@@ -12,7 +12,7 @@ const Lunch = () => {
   const [clicks, setClicks] = useState(false);
   const [clicks2, setClicks2] = useState(false);
   const navigate = useNavigate();
-  const time = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate() - 1}`;
+  const time = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`;
   // console.log(api[rand].DDISH_NM);
 
   useEffect(()=>{
@@ -62,7 +62,7 @@ const Lunch = () => {
       </div>
       {lunchNull !== null ? (
         <div className='lunchBtn'>
-          <button onClick={click} className={clicks2 ? 'no' : 'yes'}>급식 불러오기</button>
+          <button onClick={click} className={clicks2 ? 'no' : 'yes'}>급식 정보 불러오기</button>
           <button onClick={loading} className={clicks ? 'yes' : 'no'}>급식 확인하기</button>
           <button className='yes' onClick={goMain}>홈으로</button>
         </div>
