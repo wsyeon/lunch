@@ -12,7 +12,9 @@ const Lunch = () => {
   const [clicks, setClicks] = useState(false);
   const [clicks2, setClicks2] = useState(false);
   const navigate = useNavigate();
-  const time = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`;
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const time = `${date.getFullYear()}${month}${day}`;
   // console.log(api[rand].DDISH_NM);
 
   useEffect(()=>{
@@ -25,6 +27,7 @@ const Lunch = () => {
     } else if (resutl !== 0) {
       setInfo(resutl[0].DDISH_NM.split(""));
     }
+    console.log(info)
     setClicks(true);
     setClicks2(true);
   };
